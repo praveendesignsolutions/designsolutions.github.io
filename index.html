@@ -4,37 +4,65 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DesignSolutions</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
-    body {
+    :root {
+      --primary: #00f0ff;
+      --dark: #000;
+      --text: #fff;
+    }
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
       font-family: 'Inter', sans-serif;
-      background-color: #000;
-      color: #fff;
-      position: relative;
+      background-color: var(--dark);
+      color: var(--text);
       overflow-x: hidden;
     }
-
-    /* Fullscreen Logo Watermark Background */
     body::before {
       content: "";
       background: url('logo.png') center center no-repeat;
-      background-size: 40%;
-      opacity: 0.06;
+      background-size: 35%;
+      opacity: 0.05;
       position: fixed;
       top: 0; left: 0;
       width: 100%;
       height: 100%;
       z-index: 0;
-      animation: fadeLogo 15s ease-in-out infinite alternate;
+      animation: fadeLogo 18s ease-in-out infinite alternate;
     }
-
     @keyframes fadeLogo {
       from { opacity: 0.04; transform: scale(1); }
       to { opacity: 0.08; transform: scale(1.05); }
     }
-
+    header {
+      background: rgba(0, 0, 0, 0.85);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #111;
+    }
+    header h1 {
+      color: var(--primary);
+      font-size: 1.8rem;
+    }
+    nav a {
+      margin-left: 1.5rem;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    nav a:hover {
+      color: var(--primary);
+    }
     .container {
       position: relative;
       z-index: 1;
@@ -42,241 +70,207 @@
       max-width: 900px;
       margin: auto;
     }
-
-    header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      color: #00f0ff;
-    }
-
-    select {
-      background: #111;
-      color: #00f0ff;
-      padding: 8px;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      margin-top: 10px;
-    }
-
     h2 {
-      color: #00f0ff;
+      color: var(--primary);
       margin-top: 2rem;
     }
-
     ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    li {
-      margin: 0.5rem 0;
-      font-size: 1.1rem;
-    }
-
-    .social-icons {
       margin-top: 1rem;
+      line-height: 1.7;
     }
-
     .social-icons a {
-      color: #00f0ff;
-      font-size: 1.5rem;
+      color: var(--primary);
       margin: 0 10px;
-      transition: transform 0.3s;
+      font-size: 1.5rem;
     }
-
-    .social-icons a:hover {
-      transform: scale(1.2);
+    .cta-button {
+      display: inline-block;
+      background: var(--primary);
+      color: var(--dark);
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      margin-top: 1rem;
+      transition: 0.3s;
+    }
+    .cta-button:hover {
+      background: #0cf;
+      transform: scale(1.05);
+    }
+    footer {
+      background: #111;
+      color: #888;
+      padding: 1rem;
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+    .lang-selector {
+      margin: 1rem 0;
+    }
+    select {
+      padding: 0.5rem;
+      background: #111;
+      color: var(--primary);
+      border: none;
+      border-radius: 5px;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1 id="company-name">DesignSolutions</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
   <div class="container">
-    <header>
-      <h1 id="company-name">DesignSolutions</h1>
-      <p id="tagline">Transforming Concepts into Reality</p>
-      <select onchange="changeLang(this.value)">
-        <option value="en">🌐 English</option>
-        <option value="hi">🇮🇳 Hindi</option>
-        <option value="ta">🇮🇳 Tamil</option>
-        <option value="kn">🇮🇳 Kannada</option>
-        <option value="de">🇩🇪 German</option>
-        <option value="ja">🇯🇵 Japanese</option>
-        <option value="zh">🇨🇳 Chinese</option>
+    <div class="lang-selector">
+      <label for="language" style="color: var(--primary); font-weight: bold;">🌍 Choose Language: </label>
+      <select id="language" onchange="setLanguage(this.value)">
+        <option value="en">English</option>
+        <option value="hi">Hindi</option>
+        <option value="ta">Tamil</option>
+        <option value="kn">Kannada</option>
+        <option value="de">German</option>
+        <option value="ja">Japanese</option>
+        <option value="zh">Chinese</option>
+        <option value="ar">Arabic</option>
+        <option value="fr">French</option>
+        <option value="es">Spanish</option>
       </select>
-    </header>
+    </div>
 
-    <section>
+    <section id="about">
       <h2 id="about-title">About Us</h2>
-      <p id="about-text">Design Solutions is a design services company based in Bangalore, India. We offer 2D & 3D design, drafting, and engineering calculations across industries.</p>
+      <p id="about-desc">We are a Bangalore-based engineering design service provider offering 2D/3D CAD modeling, technical calculations, documentation, and product support.</p>
+    </section>
 
+    <section id="services">
       <h2 id="services-title">Our Services</h2>
       <ul id="services-list">
-        <li>2D & 3D Modeling</li>
-        <li>Design Consultation & Prototyping</li>
-        <li>Technical Drafting & Documentation</li>
-        <li>Product Development Support</li>
+        <li>3D Modeling</li>
+        <li>2D Drafting</li>
         <li>Engineering Calculations</li>
+        <li>Cylinder Selection</li>
+        <li>Technical Documentation</li>
       </ul>
+    </section>
 
+    <section id="contact">
       <h2 id="contact-title">Contact Us</h2>
-      <p id="contact-phone">📞 Phone: +91 63626 24035</p>
-      <p id="contact-email">📧 Email: praveendesignsolutions@outlook.com</p>
+      <p><strong>Phone:</strong> +91 63626 24035</p>
+      <p><strong>Email:</strong> <a href="mailto:praveendesignsolutions@outlook.com" style="color: var(--primary);">praveendesignsolutions@outlook.com</a></p>
       <div class="social-icons">
-        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
         <a href="#"><i class="fab fa-instagram"></i></a>
         <a href="#"><i class="fab fa-github"></i></a>
-        <a href="mailto:praveendesignsolutions@outlook.com"><i class="fas fa-envelope"></i></a>
       </div>
+      <a class="cta-button" href="mailto:praveendesignsolutions@outlook.com">📩 Get In Touch</a>
     </section>
   </div>
+
+  <footer>
+    &copy; 2025 DesignSolutions. All rights reserved.
+  </footer>
 
   <script>
     const translations = {
       en: {
         company: "DesignSolutions",
-        tagline: "Transforming Concepts into Reality",
         aboutTitle: "About Us",
-        aboutText: "Design Solutions is a design services company based in Bangalore, India. We offer 2D & 3D design, drafting, and engineering calculations across industries.",
+        aboutDesc: "We are a Bangalore-based engineering design service provider offering 2D/3D CAD modeling, technical calculations, documentation, and product support.",
         servicesTitle: "Our Services",
-        services: [
-          "2D & 3D Modeling",
-          "Design Consultation & Prototyping",
-          "Technical Drafting & Documentation",
-          "Product Development Support",
-          "Engineering Calculations"
-        ],
-        contactTitle: "Contact Us",
-        phone: "📞 Phone: +91 63626 24035",
-        email: "📧 Email: praveendesignsolutions@outlook.com"
+        services: ["3D Modeling", "2D Drafting", "Engineering Calculations", "Cylinder Selection", "Technical Documentation"],
+        contactTitle: "Contact Us"
       },
       hi: {
         company: "डिज़ाइन सॉल्यूशंस",
-        tagline: "संकल्पनाओं को वास्तविकता में बदलना",
         aboutTitle: "हमारे बारे में",
-        aboutText: "डिज़ाइन सॉल्यूशंस बैंगलोर, भारत में स्थित एक डिज़ाइन सेवा कंपनी है। हम 2D और 3D डिज़ाइन, ड्राफ्टिंग और इंजीनियरिंग गणनाएँ प्रदान करते हैं।",
+        aboutDesc: "हम बेंगलुरु स्थित इंजीनियरिंग डिज़ाइन सेवा प्रदाता हैं जो 2D/3D CAD मॉडलिंग, तकनीकी कैलकुलेशन और दस्तावेज़ीकरण सेवाएँ प्रदान करते हैं।",
         servicesTitle: "हमारी सेवाएं",
-        services: [
-          "2D और 3D मॉडलिंग",
-          "डिज़ाइन परामर्श और प्रोटोटाइपिंग",
-          "तकनीकी ड्राफ्टिंग और दस्तावेज़ीकरण",
-          "उत्पाद विकास सहायता",
-          "इंजीनियरिंग गणनाएँ"
-        ],
-        contactTitle: "संपर्क करें",
-        phone: "📞 फोन: +91 63626 24035",
-        email: "📧 ईमेल: praveendesignsolutions@outlook.com"
+        services: ["3D मॉडलिंग", "2D ड्राफ्टिंग", "इंजीनियरिंग कैलकुलेशन", "सिलेंडर चयन", "तकनीकी दस्तावेज़"],
+        contactTitle: "संपर्क करें"
       },
       ta: {
         company: "டிசைன் சால்யூஷன்ஸ்",
-        tagline: "கருத்துகளை உண்மையாக மாற்றுதல்",
         aboutTitle: "எங்களை பற்றி",
-        aboutText: "டிசைன் சால்யூஷன்ஸ் என்பது பெங்களூரில் உள்ள வடிவமைப்பு சேவை நிறுவனம். 2D மற்றும் 3D வடிவமைப்பு, வரைதல் மற்றும் பொறியியல் கணக்கீடுகளை வழங்குகிறது.",
+        aboutDesc: "நாங்கள் பெங்களூரை அடிப்படையாக கொண்ட பொறியியல் வடிவமைப்பு சேவை நிறுவனமாக இருக்கிறோம். 2D/3D வடிவமைப்பு மற்றும் தொழில்நுட்ப ஆவணங்களை வழங்குகிறோம்.",
         servicesTitle: "எங்கள் சேவைகள்",
-        services: [
-          "2D & 3D மாடலிங்",
-          "வடிவமைப்பு ஆலோசனை மற்றும் மாதிரிபடைத்தல்",
-          "தொழில்நுட்ப வரைதல் மற்றும் ஆவணங்கள்",
-          "தயாரிப்பு மேம்பாட்டு ஆதரவு",
-          "பொறியியல் கணக்கீடுகள்"
-        ],
-        contactTitle: "தொடர்பு கொள்ள",
-        phone: "📞 தொலைபேசி: +91 63626 24035",
-        email: "📧 மின்னஞ்சல்: praveendesignsolutions@outlook.com"
+        services: ["3D வடிவமைப்பு", "2D வரைதல்", "பொறியியல் கணக்கீடு", "சிலிண்டர் தேர்வு", "தொழில்நுட்ப ஆவணங்கள்"],
+        contactTitle: "தொடர்பு கொள்ள"
       },
       kn: {
         company: "ಡಿಸೈನ್ ಸೊಲ್ಯೂಶನ್ಸ್",
-        tagline: "ಕಲ್ಪನೆಗಳನ್ನು ನಿಜವಾಗಿಸುವುದು",
         aboutTitle: "ನಮ್ಮ ಬಗ್ಗೆ",
-        aboutText: "ಡಿಸೈನ್ ಸೊಲ್ಯೂಶನ್ಸ್ ಬೆಂಗಳೂರು ಆಧಾರಿತ ಡಿಸೈನ್ ಸೇವಾ ಸಂಸ್ಥೆಯಾಗಿದೆ. ನಾವು 2D ಮತ್ತು 3D ವಿನ್ಯಾಸ, ಡ್ರಾಫ್ಟಿಂಗ್ ಮತ್ತು ಇಂಜಿನಿಯರಿಂಗ್ ಲೆಕ್ಕಾಚಾರಗಳನ್ನು ಒದಗಿಸುತ್ತೇವೆ.",
+        aboutDesc: "ನಾವು ಬೆಂಗಳೂರು ಆಧಾರಿತ ಇಂಜಿನಿಯರಿಂಗ್ ಡಿಸೈನ್ ಸೇವಾ ಸಂಸ್ಥೆಯಾಗಿದ್ದು, 2D/3D ಮಾದರಿ ರಚನೆ ಮತ್ತು ತಾಂತ್ರಿಕ ದಾಖಲೆಗಳನ್ನು ಒದಗಿಸುತ್ತೇವೆ.",
         servicesTitle: "ನಮ್ಮ ಸೇವೆಗಳು",
-        services: [
-          "2D & 3D ಮಾದರಿಗಳು",
-          "ವಿನ್ಯಾಸ ಸಲಹೆ ಮತ್ತು ಪ್ರೋಟೋಟೈಪಿಂಗ್",
-          "ತಾಂತ್ರಿಕ ಡ್ರಾಫ್ಟಿಂಗ್ ಮತ್ತು ದಾಖಲೆಗಳು",
-          "ಉತ್ಪನ್ನ ಅಭಿವೃದ್ಧಿ ಬೆಂಬಲ",
-          "ಇಂಜಿನಿಯರಿಂಗ್ ಲೆಕ್ಕಾಚಾರಗಳು"
-        ],
-        contactTitle: "ಸಂಪರ್ಕಿಸಿ",
-        phone: "📞 ದೂರವಾಣಿ: +91 63626 24035",
-        email: "📧 ಇಮೇಲ್: praveendesignsolutions@outlook.com"
+        services: ["3D ಮಾದರೀಕರಣ", "2D ರೇಖಾಚಿತ್ರ", "ಇಂಜಿನಿಯರಿಂಗ್ ಲೆಕ್ಕಾಚಾರಗಳು", "ಸಿಲಿಂಡರ್ ಆಯ್ಕೆ", "ತಾಂತ್ರಿಕ ಡಾಕ್ಯುಮೆಂಟೇಶನ್"],
+        contactTitle: "ಸಂಪರ್ಕಿಸಿ"
       },
       de: {
-        company: "DesignSolutions",
-        tagline: "Konzepte in Realität verwandeln",
+        company: "DesignLösungen",
         aboutTitle: "Über uns",
-        aboutText: "Design Solutions ist ein Designunternehmen mit Sitz in Bangalore, Indien. Wir bieten 2D- und 3D-Design, technische Zeichnungen und Berechnungen an.",
+        aboutDesc: "Wir sind ein Designserviceunternehmen mit Sitz in Bangalore und bieten 2D/3D-Modellierung, technische Dokumentation und Unterstützung.",
         servicesTitle: "Unsere Dienstleistungen",
-        services: [
-          "2D- & 3D-Modellierung",
-          "Designberatung & Prototyping",
-          "Technisches Zeichnen & Dokumentation",
-          "Produktentwicklung",
-          "Ingenieurtechnische Berechnungen"
-        ],
-        contactTitle: "Kontakt",
-        phone: "📞 Telefon: +91 63626 24035",
-        email: "📧 E-Mail: praveendesignsolutions@outlook.com"
+        services: ["3D-Modellierung", "2D-Zeichnung", "Technische Berechnungen", "Zylinderauswahl", "Dokumentation"],
+        contactTitle: "Kontaktieren Sie uns"
       },
       ja: {
         company: "デザインソリューションズ",
-        tagline: "アイデアを現実に変える",
-        aboutTitle: "会社概要",
-        aboutText: "デザインソリューションズはインド・バンガロールに拠点を置くデザイン会社です。2D・3Dデザイン、製図、工学計算を提供しています。",
+        aboutTitle: "私たちについて",
+        aboutDesc: "私たちはバンガロールを拠点とする設計サービス会社であり、2D/3Dモデリング、技術文書を提供しています。",
         servicesTitle: "サービス内容",
-        services: [
-          "2D・3Dモデリング",
-          "デザインコンサルティングと試作",
-          "技術図面とドキュメント",
-          "製品開発支援",
-          "エンジニアリング計算"
-        ],
-        contactTitle: "お問い合わせ",
-        phone: "📞 電話: +91 63626 24035",
-        email: "📧 メール: praveendesignsolutions@outlook.com"
+        services: ["3Dモデリング", "2D図面", "工学計算", "シリンダー選定", "技術ドキュメント"],
+        contactTitle: "お問い合わせ"
       },
       zh: {
         company: "设计方案",
-        tagline: "将概念变为现实",
         aboutTitle: "关于我们",
-        aboutText: "Design Solutions 是位于印度班加罗尔的设计服务公司。我们提供 2D/3D 设计、绘图和工程计算服务。",
+        aboutDesc: "我们是总部位于班加罗尔的设计服务公司，提供2D/3D建模、技术文档和支持。",
         servicesTitle: "我们的服务",
-        services: [
-          "2D 和 3D 建模",
-          "设计咨询与原型制作",
-          "技术绘图与文档",
-          "产品开发支持",
-          "工程计算"
-        ],
-        contactTitle: "联系我们",
-        phone: "📞 电话: +91 63626 24035",
-        email: "📧 邮箱: praveendesignsolutions@outlook.com"
+        services: ["3D建模", "2D制图", "工程计算", "气缸选择", "技术文档"],
+        contactTitle: "联系我们"
+      },
+      ar: {
+        company: "حلول التصميم",
+        aboutTitle: "معلومات عنا",
+        aboutDesc: "نحن مزود خدمات تصميم هندسي مقره بنغالور، نقدم تصميمات ثنائية وثلاثية الأبعاد، والتوثيق، والدعم الفني.",
+        servicesTitle: "خدماتنا",
+        services: ["تصميم ثلاثي الأبعاد", "رسم ثنائي الأبعاد", "حسابات هندسية", "اختيار الأسطوانة", "توثيق فني"],
+        contactTitle: "اتصل بنا"
+      },
+      fr: {
+        company: "Solutions de Design",
+        aboutTitle: "Qui sommes-nous",
+        aboutDesc: "Nous sommes une société de services de conception basée à Bangalore offrant de la modélisation 2D/3D, documentation technique et support produit.",
+        servicesTitle: "Nos services",
+        services: ["Modélisation 3D", "Dessins 2D", "Calculs techniques", "Sélection de cylindre", "Documentation"],
+        contactTitle: "Contactez-nous"
+      },
+      es: {
+        company: "Soluciones de Diseño",
+        aboutTitle: "Sobre nosotros",
+        aboutDesc: "Somos una empresa de servicios de diseño con sede en Bangalore que ofrece modelado 2D/3D, documentación técnica y soporte.",
+        servicesTitle: "Nuestros servicios",
+        services: ["Modelado 3D", "Dibujo 2D", "Cálculos de ingeniería", "Selección de cilindros", "Documentación técnica"],
+        contactTitle: "Contáctenos"
       }
     };
 
-    function changeLang(code) {
-      const t = translations[code];
-      document.getElementById("company-name").textContent = t.company;
-      document.getElementById("tagline").textContent = t.tagline;
-      document.getElementById("about-title").textContent = t.aboutTitle;
-      document.getElementById("about-text").textContent = t.aboutText;
-      document.getElementById("services-title").textContent = t.servicesTitle;
-      const list = document.getElementById("services-list");
-      list.innerHTML = "";
-      t.services.forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = item;
-        list.appendChild(li);
-      });
-      document.getElementById("contact-title").textContent = t.contactTitle;
-      document.getElementById("contact-phone").textContent = t.phone;
-      document.getElementById("contact-email").textContent = t.email;
+    function setLanguage(lang) {
+      const t = translations[lang];
+      document.getElementById('company-name').textContent = t.company;
+      document.getElementById('about-title').textContent = t.aboutTitle;
+      document.getElementById('about-desc').textContent = t.aboutDesc;
+      document.getElementById('services-title').textContent = t.servicesTitle;
+      document.getElementById('services-list').innerHTML = t.services.map(item => `<li>${item}</li>`).join('');
+      document.getElementById('contact-title').textContent = t.contactTitle;
     }
   </script>
 </body>
 </html>
-
