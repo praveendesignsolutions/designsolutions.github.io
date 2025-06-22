@@ -2,87 +2,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DesignSolutions</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #0a0a0a;
-            color: #f0f0f0;
-        }
-        header {
-            background-color: #121212;
-            padding: 20px;
-            text-align: center;
-        }
-        header img {
-            width: 100px;
-            height: auto;
-        }
-        header h1 {
-            margin: 10px 0 0;
-            font-size: 2.5em;
-            color: #00eaff;
-        }
-        .tagline {
-            font-size: 1.2em;
-            color: #ccc;
-        }
-        main {
-            padding: 40px 20px;
-            max-width: 800px;
-            margin: auto;
-        }
-        h2 {
-            color: #00eaff;
-        }
-        ul {
-            list-style: disc;
-            padding-left: 20px;
-        }
-        section {
-            margin-bottom: 40px;
-        }
-        footer {
-            background-color: #121212;
-            text-align: center;
-            padding: 20px;
-            color: #666;
-        }
-        a {
-            color: #00eaff;
-            text-decoration: none;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DesignSolutions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      background-color: #0a0a0a;
+      color: #e0e0e0;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+    }
+    header img {
+      width: 120px;
+      border-radius: 10px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #00f0ff;
+    }
+    h2 {
+      font-size: 1.75rem;
+      color: #00f0ff;
+      margin-bottom: 0.5rem;
+    }
+    p, li {
+      font-size: 1.1rem;
+    }
+    .section {
+      padding: 2rem 1.5rem;
+      max-width: 800px;
+      margin: auto;
+      animation: slideIn 1s ease-out;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    li {
+      margin-bottom: 0.6rem;
+    }
+    .contact p {
+      margin: 0.5rem 0;
+    }
+    .social-icons {
+      margin-top: 1rem;
+      font-size: 1.6rem;
+    }
+    .social-icons a {
+      color: #00f0ff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    .social-icons a:hover {
+      color: #ffffff;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <img src="logo.png" alt="Design Solutions Logo">
-        <h1>DesignSolutions</h1>
-        <p class="tagline">Expert in 3D Modelling, 2D Drafting & Engineering Calculations</p>
-    </header>
-    <main>
-        <section>
-            <h2>Our Services</h2>
-            <ul>
-                <li>3D Modelling</li>
-                <li>2D Drawing</li>
-                <li>Critical Engineering Calculations</li>
-                <li>Cylinder Selection</li>
-                <li>Technical Documentation</li>
-            </ul>
-        </section>
-        <section>
-            <h2>Contact Us</h2>
-            <p><strong>Phone:</strong> 6362624035</p>
-            <p><strong>Email:</strong> <a href="mailto:praveendesignsolutions@outlook.com">praveendesignsolutions@outlook.com</a></p>
-        </section>
-    </main>
-    <footer>
-        &copy; 2025 DesignSolutions. All rights reserved.
-    </footer>
+  <header>
+    <img src="logo.png" alt="DesignSolutions Logo">
+    <h1>DesignSolutions</h1>
+    <p>Expert in 3D Modelling, 2D Drafting & Engineering Calculations</p>
+  </header>
+
+  <section class="section">
+    <h2>Our Services</h2>
+    <ul>
+      <li>3D Modelling</li>
+      <li>2D Drawing</li>
+      <li>Critical Engineering Calculations</li>
+      <li>Cylinder Selection</li>
+      <li>Technical Documentation</li>
+    </ul>
+  </section>
+
+  <section class="section contact">
+    <h2>Contact Us</h2>
+    <p><strong>Phone:</strong> 6362624035</p>
+    <p><strong>Email:</strong> <a href="mailto:praveendesignsolutions@outlook.com" style="color:#00f0ff;">praveendesignsolutions@outlook.com</a></p>
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/posts/design-solutions1_company-profile-design-solutions-praveen-activity-7342440579777093632-_7bA?utm_source=share&utm_medium=member_android&rcm=ACoAAEunzdMB94nQwmfPLdQTCqToN_XpKFW5nvs" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://github.com/praveendesignsolutions" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="mailto:praveendesignsolutions@outlook.com"><i class="fas fa-envelope"></i></a>
+    </div>
+  </section>
 </body>
 </html>
