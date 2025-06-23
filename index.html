@@ -20,19 +20,22 @@
       color: var(--text);
       overflow-x: hidden;
     }
-
     header {
       position: fixed;
       top: 0;
       width: 100%;
       z-index: 999;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.8);
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
     }
     header img { width: 60px; }
+    nav {
+      display: flex;
+      align-items: center;
+    }
     nav a {
       color: var(--silver);
       margin-left: 1.5rem;
@@ -40,28 +43,41 @@
       font-weight: 500;
     }
     nav a:hover { color: var(--primary); }
+    .lang-select {
+      margin-left: 1rem;
+      background: #111;
+      border: none;
+      color: var(--primary);
+      padding: 0.4rem;
+      font-size: 1rem;
+      border-radius: 4px;
+    }
 
     .hero {
       height: 100vh;
       position: relative;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      color: var(--text);
     }
-
     .hero video {
       position: absolute;
       top: 0; left: 0;
-      width: 100%; height: 100%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
       object-fit: cover;
+      background-color: #000;
       z-index: -1;
       filter: brightness(0.3);
     }
 
     .hero-content {
       z-index: 2;
+      padding-top: 80px;
     }
 
     .hero-content h1 {
@@ -73,6 +89,8 @@
     .hero-content p {
       font-size: 1.2rem;
       color: var(--silver);
+      max-width: 700px;
+      margin: 0 auto;
     }
 
     .cta-button {
@@ -84,6 +102,7 @@
       font-weight: bold;
       border-radius: 6px;
       transition: 0.3s;
+      display: inline-block;
     }
 
     .cta-button:hover {
@@ -128,14 +147,11 @@
       font-size: 0.9rem;
     }
 
-    .lang-select {
-      margin-top: 1.5rem;
-      background: #111;
-      border: none;
-      color: var(--primary);
-      padding: 0.5rem;
-      font-size: 1rem;
-      border-radius: 4px;
+    @media(max-width: 768px) {
+      .hero-content h1 { font-size: 2rem; }
+      header { flex-direction: column; }
+      nav { flex-direction: column; margin-top: 10px; }
+      nav a, .lang-select { margin: 0.5rem 0; }
     }
   </style>
 </head>
@@ -149,18 +165,6 @@
       <a href="#services">Services</a>
       <a href="#why">Why Us</a>
       <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <!-- Hero with Background Video -->
-  <section class="hero">
-    <video autoplay muted loop playsinline>
-      <source src="bg-video.mp4" type="video/mp4">
-      Your browser does not support video.
-    </video>
-    <div class="hero-content">
-      <h1 id="company-name">DesignSolutions</h1>
-      <p id="tagline">Transforming Ideas into Precision Engineering</p>
       <select class="lang-select" onchange="changeLang(this.value)">
         <option value="en">English</option>
         <option value="hi">हिंदी</option>
@@ -173,8 +177,20 @@
         <option value="fr">Français</option>
         <option value="es">Español</option>
       </select>
-      <br>
-      <a class="cta-button" href="https://wa.me/916362624035" target="_blank">💬 WhatsApp Us</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <video autoplay muted loop playsinline>
+      <source src="bg-video.mp4" type="video/mp4">
+    </video>
+    <div class="hero-content">
+      <h1 id="company-name">DesignSolutions</h1>
+      <p id="tagline">Transforming Ideas into Precision Engineering</p>
+      <div style="margin-top: 3rem;">
+        <a class="cta-button" href="https://wa.me/916362624035" target="_blank">💬 Get in Touch on WhatsApp</a>
+      </div>
     </div>
   </section>
 
@@ -224,52 +240,52 @@
     &copy; 2025 DesignSolutions. Crafted with precision and passion.
   </footer>
 
-  <!-- JS for Language Switch -->
+  <!-- JavaScript for language switching -->
   <script>
     const translations = {
       hi: {
         tagline: "विचारों को सटीक इंजीनियरिंग में बदलना",
         about: "डिज़ाइनसोल्यूशन्स बेंगलुरु स्थित कंपनी है जो 2D/3D डिज़ाइन, सिलेंडर चयन और तकनीकी प्रलेखन प्रदान करती है।",
-        services: [
-          "3D यांत्रिक मॉडलिंग",
-          "2D ड्राफ्टिंग और चित्र",
-          "इंजीनियरिंग गणनाएं",
-          "सिलेंडर चयन",
-          "तकनीकी दस्तावेज़ीकरण"
-        ],
-        why: [
-          "✅ विश्वसनीय इंजीनियरिंग समर्थन",
-          "✅ हर प्रोजेक्ट के लिए कस्टम समाधान",
-          "✅ सटीकता के साथ तेज़ डिलीवरी",
-          "✅ पारदर्शी और किफायती मूल्य"
-        ]
+        services: ["3D यांत्रिक मॉडलिंग", "2D ड्राफ्टिंग", "इंजीनियरिंग गणना", "सिलेंडर चयन", "तकनीकी दस्तावेज़"],
+        why: ["✅ भरोसेमंद इंजीनियरिंग समर्थन", "✅ हर परियोजना के लिए समाधान", "✅ तेज़ और सटीक डिलीवरी", "✅ पारदर्शी कीमतें"]
+      },
+      ta: {
+        tagline: "கருத்துகளை துல்லியமான பொறியியலாக மாற்றுகிறோம்",
+        about: "DesignSolutions என்பது பெங்களூரில் உள்ள ஒரு நிறுவனம். இது 2D/3D வடிவமைப்பு, சிலிண்டர் தேர்வு மற்றும் ஆவணங்களை வழங்குகிறது.",
+        services: ["3D மெக்கானிக்கல் மாடலிங்", "2D வரைதல்", "பொறியியல் கணக்குகள்", "சிலிண்டர் தேர்வு", "தொழில்நுட்ப ஆவணங்கள்"],
+        why: ["✅ நம்பகமான பொறியியல் ஆதரவு", "✅ தனிப்பட்ட தீர்வுகள்", "✅ துல்லியமான நேரடி வழங்கல்", "✅ வெளிப்படையான விலை"]
+      },
+      kn: {
+        tagline: "ಆಲೋಚನೆಗಳನ್ನು ತಂತ್ರಜ್ಞಾನದಲ್ಲಿ ಪರಿವರ್ತಿಸಲು",
+        about: "ಡಿಸೈನ್ ಸೊಲ್ಯೂಶನ್ಸ್ ಬೆಂಗಳೂರಿನಲ್ಲಿ ಆಧಾರಿತ ಕಂಪನಿಯಾಗಿದ್ದು, ಇಂಜಿನಿಯರಿಂಗ್ ಗಾಗಿ 2D/3D ಮಾದರಿಗಳು ಮತ್ತು ಲೆಕ್ಕಾಚಾರಗಳನ್ನು ನೀಡುತ್ತದೆ.",
+        services: ["3D ಮಾದರಿಗಳು", "2D ಡ್ರಾಫ್ಟಿಂಗ್", "ಇಂಜಿನಿಯರಿಂಗ್ ಲೆಕ್ಕಾಚಾರಗಳು", "ಸಿಲಿಂಡರ್ ಆಯ್ಕೆ", "ದಾಖಲೆಗಳು"],
+        why: ["✅ ನಿಖರತೆ ಮತ್ತು ಭದ್ರತೆ", "✅ ಪ್ರತಿ ಯೋಜನೆಗೆ ವಿಶಿಷ್ಟ ಪರಿಹಾರ", "✅ ವೇಗದ ತಿರುಗಾಟ", "✅ ಸ್ಪಷ್ಟ ಬೆಲೆ"]
       }
-      // Add other language objects here...
     };
 
     function changeLang(code) {
-      if (code === 'en') {
-        document.getElementById('tagline').textContent = "Transforming Ideas into Precision Engineering";
-        document.getElementById('about-text').textContent = "DesignSolutions, based in Bangalore, India, provides 2D/3D modeling, cylinder selection, engineering calculations, and documentation to help industries bring their vision to life.";
-        document.getElementById('services-list').innerHTML = `
-          <li>3D Mechanical Modeling</li>
-          <li>2D Drafting and Drawing Sheets</li>
-          <li>Engineering Calculations</li>
-          <li>Cylinder Selection</li>
-          <li>Technical Documentation</li>`;
-        document.getElementById('why-list').innerHTML = `
-          <li>✅ Accurate and reliable engineering support</li>
-          <li>✅ Tailored solutions for every project</li>
-          <li>✅ Fast turnaround with high precision</li>
-          <li>✅ Transparent and affordable pricing</li>`;
-        return;
-      }
       const t = translations[code];
-      if (!t) return;
+      if (!t) return resetToEnglish();
       document.getElementById('tagline').textContent = t.tagline;
       document.getElementById('about-text').textContent = t.about;
-      document.getElementById('services-list').innerHTML = t.services.map(s => `<li>${s}</li>`).join('');
-      document.getElementById('why-list').innerHTML = t.why.map(s => `<li>${s}</li>`).join('');
+      document.getElementById('services-list').innerHTML = t.services.map(item => `<li>${item}</li>`).join('');
+      document.getElementById('why-list').innerHTML = t.why.map(item => `<li>${item}</li>`).join('');
+    }
+
+    function resetToEnglish() {
+      document.getElementById('tagline').textContent = "Transforming Ideas into Precision Engineering";
+      document.getElementById('about-text').textContent = "DesignSolutions, based in Bangalore, India, provides 2D/3D modeling, cylinder selection, engineering calculations, and documentation to help industries bring their vision to life.";
+      document.getElementById('services-list').innerHTML = `
+        <li>3D Mechanical Modeling</li>
+        <li>2D Drafting and Drawing Sheets</li>
+        <li>Engineering Calculations</li>
+        <li>Cylinder Selection</li>
+        <li>Technical Documentation</li>`;
+      document.getElementById('why-list').innerHTML = `
+        <li>✅ Accurate and reliable engineering support</li>
+        <li>✅ Tailored solutions for every project</li>
+        <li>✅ Fast turnaround with high precision</li>
+        <li>✅ Transparent and affordable pricing</li>`;
     }
   </script>
 
